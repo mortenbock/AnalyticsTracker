@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyticsTracker", "src\AnalyticsTracker\AnalyticsTracker.csproj", "{E6F2CC1C-528D-45B5-8690-0A7963FD8FC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyticsTracker.Tests", "src\AnalyticsTracker.Tests\AnalyticsTracker.Tests.csproj", "{7AEE8E82-BD3C-414C-8EBD-146C3ADBB2B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "packaging", "packaging", "{599B5C94-60D9-44A4-8152-CFEDE57328DE}"
+	ProjectSection(SolutionItems) = preProject
+		packaging\CreateNuget.bat = packaging\CreateNuget.bat
+		packaging\ReleaseChecklist.txt = packaging\ReleaseChecklist.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6F2CC1C-528D-45B5-8690-0A7963FD8FC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F2CC1C-528D-45B5-8690-0A7963FD8FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F2CC1C-528D-45B5-8690-0A7963FD8FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F2CC1C-528D-45B5-8690-0A7963FD8FC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AEE8E82-BD3C-414C-8EBD-146C3ADBB2B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AEE8E82-BD3C-414C-8EBD-146C3ADBB2B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AEE8E82-BD3C-414C-8EBD-146C3ADBB2B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AEE8E82-BD3C-414C-8EBD-146C3ADBB2B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

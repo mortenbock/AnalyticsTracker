@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://example.com</licenseUrl>
+    <projectUrl>https://example.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>AnalyticsTracker is a utility for generating tracking scripts for Google Analytics in ASP.NET sites </description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright © 2015</copyright>
+    <tags>google analytics</tags>
+  </metadata>
+</package>

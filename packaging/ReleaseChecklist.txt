@@ -1,0 +1,3 @@
+Bump version number in assembly
+Update releaseNotes in TaxonomyPicker.nuspec
+Run CreateNuget.bat
