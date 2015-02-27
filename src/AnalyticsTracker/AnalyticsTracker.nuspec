@@ -6,8 +6,8 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://example.com</licenseUrl>
-    <projectUrl>https://example.com</projectUrl>
+    <licenseUrl>https://github.com/vertica-as/AnalyticsTracker/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/vertica-as/AnalyticsTracker</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>AnalyticsTracker is a utility for generating tracking scripts for Google Analytics in ASP.NET sites </description>
     <releaseNotes>Initial release</releaseNotes>
