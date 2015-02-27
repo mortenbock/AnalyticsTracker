@@ -4,7 +4,7 @@
 
 ## Installation
 
-Installing AnalyticsTracker is simple. Install it from NuGet to add it to your project.
+Installing AnalyticsTracker is simple. [Install it from NuGet](http://www.nuget.org/packages/AnalyticsTracker) to add it to your project.
 
 In your template, add the following after the `<body>` to render the tracking script
 
