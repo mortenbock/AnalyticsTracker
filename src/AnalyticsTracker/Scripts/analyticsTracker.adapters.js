@@ -44,7 +44,7 @@
 	}
 
 	if (jQuery) {
-		$(document).ajaxComplete(function(e, xhr, options) {
+		$(document).ajaxComplete(function(evt, xhr, options) {
 			var i = 0;
 			var value = null;
 			var encodedHeader = "";
