@@ -1,10 +1,15 @@
 # Welcome to AnalyticsTracker
 
-**AnalyticsTracker** is a utility aimed at making it easier to track data from ASP.NET applications to Google Analytics
+**AnalyticsTracker** is a utility aimed at making it easier to track data from ASP.NET applications to Google Analytics and Google Tag Manager
+
+- [Google Analytics](#google-analytics)
+- [Google Tag Manager](#google-tag-manager)
 
 ## Installation
 
 Installing AnalyticsTracker is simple. [Install it from NuGet](http://www.nuget.org/packages/AnalyticsTracker) to add it to your project.
+
+## Google Analytics
 
 In your template, add the following after the `<body>` to render the tracking script
 
@@ -49,17 +54,17 @@ AnalyticsTracker can also track data from ajax requests. We have included ajax i
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
 	<script src="/Scripts/analyticstracker.adapters.js"></script>
 
-## Usage
+### Usage
 
 AnalyticsTracker aims to provide som sensible defaults, and let you override some of the advanced settings if you need to.
 
-### Override url
+#### Override url
 
 If you want to track a different url for the pageview than the one in the browser, you can override it by setting the page of the current tracker
 
 	AnalyticsTracker.Current.SetPage("/my/custom/url");
 
-### Commands
+#### Commands
 
 By default AnalyticsTracker will output the basic tracking code, and track a standard pageview. When you want to track additional data, you add `commands` to the current tracker. 
 
@@ -73,7 +78,7 @@ Here we are tracking an event from a controller
 	}
 
 
-### Ecommerce tracking
+#### Ecommerce tracking
 
 The command to track an ecommerce transaction can be used like this:
 
@@ -95,7 +100,7 @@ The command to track an ecommerce transaction can be used like this:
 	AnalyticsTracker.Current.Track(new TransactionCommand(transaction));
 
 
-### Enhanced Ecommerce tracking
+#### Enhanced Ecommerce tracking
 
 If you have enabled Enhanced Ecommerce tracking in your account, then you should use those commands to track your transactions:
 
@@ -135,7 +140,7 @@ Enhanced Ecommerce also lets you track a lot of other things. The commands are l
 	ProductDetailCommand(...)
 	ProductListCommand(...)
 
-## Client side tracking
+#### Client side tracking
 
 Sometimes you have events happening without any server interaction. For example clicking on an image to zoom it. In this case you can use AnalitycsTracker to generate the needed script:
 
@@ -144,3 +149,108 @@ Sometimes you have events happening without any server interaction. For example 
 		<img src="..."/>
 	</a>
 
+## Google Tag Manager
+
+In your template, add the following after the `<body>` to render the tracking script
+
+### MVC
+
+	@using Vertica.AnalyticsTracker
+	...
+	<body>
+		@TagManager.Render("GTM-XXYYY")
+		...
+	</body>
+
+### Webforms
+
+	<%@ Import Namespace="Vertica.AnalyticsTracker" %>
+	...
+	<body>
+		<%= TagManager.Render("GTM-XXYYY") %>
+		...
+	</body>
+
+### Advanced tracker settings
+
+You can tweak the settings of the tag by using the overloads of the Render() method.
+
+	@TagManager.Render(account:"GTM-XXYYY", dataLayerName: "myLayer");
+
+### Usage
+
+Using the TagManager lets you easily information to the `dataLayer` variable.
+
+	TagManager.Current.AddMessage(new Variable("myVariable", "myValue"));
+
+This will generate the following dataLayer
+
+	<script>
+	var dataLayer = [];
+	dataLayer.push({'myVariable': 'myValue'});
+	</script>
+
+#### Complex variables
+
+Sometimes you might want to add more complex objects to the dataLayer, and this is supported by using a dictionary
+
+	var dict = new Dictionary<string, object>
+	{
+		{"myProp", "myValue"},
+		{"yourProp", 12345}
+	};
+	TagManager.Current.AddMessage(new Variable("myVariable", dict));
+ 
+The dictionary will then be rendered as a deep object
+
+	<script>
+	var dataLayer = [];
+	dataLayer.push({'myVariable': {'myProp': 'myValue','yourProp': 12345}});
+	</script>
+
+#### Ecommerce order tracking
+
+Using the TransactionMessage, order information can be sent through the dataLayer:
+
+	var items = new[]
+	{
+		new TransactionItemInfo(
+			name: "Black shirt",
+			sku: "sh001",
+			category: "Shirts",
+			price: 50,
+			quantity: 2)
+	};
+
+	var message = new TransactionMessage(
+		transactionId: "order1001",
+		affiliation: string.Empty,
+		total: 100,
+		tax: 5,
+		shipping: 10,
+		items: items);
+	
+	TagManager.Current.AddMessage(message);
+
+The order will be rendered according to the GTM specifications:
+
+	<script>
+	var dataLayer = [];
+	dataLayer.push(
+		{
+			'transactionId': 'order1001',
+			'transactionAffiliation': '',
+			'transactionTotal': 100,
+			'transactionTax': 5,
+			'transactionShipping': 10,
+			'transactionProducts': [
+				{
+					'name': 'Black shirt',
+					'sku': 'sh001',
+					'category': 'Shirts',
+					'price': 50,
+					'quantity': 2
+				}
+			]
+		});
+	</script>
