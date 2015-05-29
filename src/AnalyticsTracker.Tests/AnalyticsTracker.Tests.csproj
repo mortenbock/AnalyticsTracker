@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Ecommerce\TransactionCommandTester.cs" />
+    <Compile Include="Commands\PageViewCommandTester.cs" />
     <Compile Include="CommandTrackerTester.cs" />
     <Compile Include="ConfigurationObjectTester.cs" />
     <Compile Include="Messages\EventTester.cs" />

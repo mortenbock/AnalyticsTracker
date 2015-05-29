@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using Vertica.AnalyticsTracker.Commands;
 
 namespace Vertica.AnalyticsTracker
 {
@@ -59,6 +60,10 @@ namespace Vertica.AnalyticsTracker
 			var sb = new StringBuilder();
 
 			RenderPrePageView(sb);
+			if (TrackDefaultPageview)
+			{
+				sb.AppendLine(new PageViewCommand().RenderCommand());
+			}
 			RenderPostPageView(sb);
 
 			return sb.ToString();
@@ -79,7 +84,9 @@ namespace Vertica.AnalyticsTracker
 			RenderPrePageView(sb);
 
 			if (TrackDefaultPageview)
-				sb.AppendLine("ga('send', 'pageview');");
+			{
+				sb.AppendLine(new PageViewCommand().RenderCommand());
+			}
 
 			RenderPostPageView(sb);
 

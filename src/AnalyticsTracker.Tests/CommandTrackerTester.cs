@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Vertica.AnalyticsTracker;
+using Vertica.AnalyticsTracker.Commands;
 
 namespace AnalyticsTracker.Tests
 {
@@ -46,7 +47,7 @@ namespace AnalyticsTracker.Tests
 			var subj = new CommandTracker();
 			subj.TrackDefaultPageview = true;
 			string rendered = subj.Render();
-			Assert.That(rendered, Is.StringContaining("ga('send', 'pageview');"));
+			Assert.That(rendered, Is.StringContaining("ga('send', {'hitType': 'pageview'});"));
 		}
 
 		[Test]
@@ -55,7 +56,7 @@ namespace AnalyticsTracker.Tests
 			var subj = new CommandTracker();
 			subj.TrackDefaultPageview = false;
 			string rendered = subj.Render();
-			Assert.That(rendered, Is.Not.StringContaining("ga('send', 'pageview'"));
+			Assert.That(rendered, Is.Not.StringContaining("ga('send', {'hitType': 'pageview'});"));
 		}
 
 		[Test]
@@ -86,6 +87,41 @@ namespace AnalyticsTracker.Tests
 			subj.Require("displayfeatures");
 			string rendered = subj.Render();
 			Assert.That(rendered, Is.StringContaining("ga('require', 'displayfeatures');"));
+		}
+
+		[Test]
+		public void RenderForHeader_NoTracking_NoHeader()
+		{
+			var subj = new CommandTracker();
+			string rendered = subj.RenderForHeader();
+			Assert.That(rendered, Is.EqualTo(string.Empty));
+		}
+
+		[Test]
+		public void RenderForHeader_ExplicitNonPageView_AddsCommand()
+		{
+			var subj = new CommandTracker();
+			subj.TrackDefaultPageview = false;
+			string rendered = subj.RenderForHeader();
+			Assert.That(rendered, Is.EqualTo(string.Empty));
+		}
+
+		[Test]
+		public void RenderForHeader_ExplicitPageView_AddsCommand()
+		{
+			var subj = new CommandTracker();
+			subj.TrackDefaultPageview = true;
+			string rendered = subj.RenderForHeader();
+			Assert.That(rendered, Is.StringContaining("ga('send', {'hitType': 'pageview'});"));
+		}
+
+		[Test]
+		public void RenderForHeader_PageViewCommand_AddsCommand()
+		{
+			var subj = new CommandTracker();
+			subj.Track(new PageViewCommand());
+			string rendered = subj.RenderForHeader();
+			Assert.That(rendered, Is.StringContaining("ga('send', {'hitType': 'pageview'});"));
 		}
 	}
 }

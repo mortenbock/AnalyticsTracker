@@ -63,6 +63,7 @@
     <Compile Include="Commands\Events\EventCommand.cs" />
     <Compile Include="Commands\Ecommerce\TransactionInfo.cs" />
     <Compile Include="Commands\Ecommerce\TransactionItemInfo.cs" />
+    <Compile Include="Commands\PageViewCommand.cs" />
     <Compile Include="CommandTracker.cs" />
     <Compile Include="ConfigurationObject.cs" />
     <Compile Include="Extensions\ExtensionsToHttpRequest.cs" />
