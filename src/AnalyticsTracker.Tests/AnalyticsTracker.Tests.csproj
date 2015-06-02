@@ -57,6 +57,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CookieGuardedCommandTester.cs" />
     <Compile Include="Commands\Ecommerce\TransactionCommandTester.cs" />
     <Compile Include="Commands\PageViewCommandTester.cs" />
     <Compile Include="CommandTrackerTester.cs" />

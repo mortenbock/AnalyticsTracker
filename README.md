@@ -140,6 +140,22 @@ Enhanced Ecommerce also lets you track a lot of other things. The commands are l
 	ProductDetailCommand(...)
 	ProductListCommand(...)
 
+#### Track only once
+A typical thing you want to do is to make sure that for example transactions are only track once, even if the user reloads the page. You should keep track of this from your server, but there will typically also be the issue of users using the back button, or browsers rehydrating a page etc. where there is no actual server interaction. 
+
+Enter the `CookieGuardedCommand`:
+
+	AnalyticsTracker.Current.Track(new CookieGuardedCommand(innerCommand, "order12345"));
+
+Wrapping your command in a `CookieGuardedCommand` will render the inner command inside an `if` statement like this:
+
+	if (document.cookie.search(/AnalyticsTrackerGuardorder12345=true/) === -1) {
+		ga('send', {'hitType': 'event','eventCategory': 'cat','eventAction': 'act','eventLabel': ''});
+		document.cookie = 'AnalyticsTrackerGuardorder12345=true; Expires=' + new Date(2016, 05, 02).toUTCString();
+	}
+
+This will ensure that the command is not executed again, if the same javascript is executed twice. User for example the order id as the command id to make sure that the cookie is only set for that specific order.
+
 #### Client side tracking
 
 Sometimes you have events happening without any server interaction. For example clicking on an image to zoom it. In this case you can use AnalitycsTracker to generate the needed script:
