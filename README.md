@@ -141,7 +141,7 @@ Enhanced Ecommerce also lets you track a lot of other things. The commands are l
 	ProductListCommand(...)
 
 #### Track only once
-A typical thing you want to do is to make sure that for example transactions are only track once, even if the user reloads the page. You should keep track of this from your server, but there will typically also be the issue of users using the back button, or browsers rehydrating a page etc. where there is no actual server interaction. 
+A typical thing you want to do is to make sure that for example transactions are only tracked once, even if the user reloads the page. You should keep track of this from your server, but there will typically also be the issue of users using the back button, or browsers rehydrating a page etc. where there is no actual server interaction. 
 
 Enter the `CookieGuardedCommand`:
 
