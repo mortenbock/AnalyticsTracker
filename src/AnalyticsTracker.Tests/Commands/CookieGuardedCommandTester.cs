@@ -14,7 +14,7 @@ namespace AnalyticsTracker.Tests.Commands
 			DateTime? now = new DateTime(2014, 09, 05);
 			var cmd = new CookieGuardedCommand(new EventCommand("cat", "act"), "myid", 365, now);
 			var rendered = cmd.RenderCommand();
-			Assert.That(rendered, Is.StringContaining("dif (document.cookie.search(/AnalyticsTrackerGuardmyid=true/) === -1)"));
+			Assert.That(rendered, Is.StringContaining("if (document.cookie.search(/AnalyticsTrackerGuardmyid=true/) === -1)"));
 			Assert.That(rendered, Is.StringContaining("document.cookie = 'AnalyticsTrackerGuardmyid=true; Expires=' + new Date(2015, 08, 05).toUTCString();"));
 		}
 
