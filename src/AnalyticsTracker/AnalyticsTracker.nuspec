@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/vertica-as/AnalyticsTracker</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>AnalyticsTracker is a utility for generating tracking scripts for Google Analytics in ASP.NET sites </description>
-    <releaseNotes>Adding support async pageview tracking</releaseNotes>
+    <releaseNotes>Adding support for cookie guarded commands</releaseNotes>
     <copyright>Copyright © 2015</copyright>
     <tags>google analytics google tag manager</tags>
   </metadata>
