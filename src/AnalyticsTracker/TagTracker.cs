@@ -1,44 +1,41 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Vertica.AnalyticsTracker
 {
-	public class TagTracker
-	{
-		private string _account;
-		private string _dataLayerName;
-		private readonly List<MessageBase> _messages;
+    public class TagTracker
+    {
+        private string _account;
+        private string _dataLayerName;
+        private readonly List<MessageBase> _messages;
 
-		public TagTracker()
-		{
-			_messages = new List<MessageBase>();
-		}
+        public TagTracker()
+        {
+            _messages = new List<MessageBase>();
+        }
 
-		public void SetAccount(string account)
-		{
-			_account = account;
-		}
+        public void SetAccount(string account)
+        {
+            _account = account;
+        }
 
-		public void SetDataLayerName(string dataLayerName)
-		{
-			_dataLayerName = dataLayerName;
-		}
+        public void SetDataLayerName(string dataLayerName)
+        {
+            _dataLayerName = dataLayerName;
+        }
 
-		public void AddMessage(MessageBase message)
-		{
-			_messages.Add(message);
-		}
+        public void AddMessage(MessageBase message)
+        {
+            _messages.Add(message);
+        }
 
-
-
-		public string Render()
-		{
-			var sb = new StringBuilder();
-			RenderDataLayer(sb);
+        public string Render()
+        {
+            var sb = new StringBuilder();
+            RenderDataLayer(sb);
 
 
-			sb.AppendFormat(@"<!-- Google Tag Manager -->
+            sb.AppendFormat(@"<!-- Google Tag Manager -->
 <noscript><iframe src='//www.googletagmanager.com/ns.html?id={0}' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
 <script>
 (function(w,d,s,l,i){{
@@ -52,19 +49,32 @@ f.parentNode.insertBefore(j,f);
 </script>
 <!-- End Google Tag Manager -->", _account, _dataLayerName);
 
-			return sb.ToString();
-		}
+            return sb.ToString();
+        }
 
-		private void RenderDataLayer(StringBuilder sb)
-		{
-			sb.AppendLine("<script>");
-			sb.AppendFormat("var {0} = [];", _dataLayerName);
-			sb.AppendLine();
-			foreach (var message in _messages)
-			{
-				sb.AppendLine(message.RenderMessage(_dataLayerName));
-			}
-			sb.AppendLine("</script>");
-		}
-	}
+        public string RenderHeader()
+        {
+            var sb = new StringBuilder();
+            RenderMessages(sb);
+
+            return sb.ToString();
+        }
+
+        private void RenderDataLayer(StringBuilder sb)
+        {
+            sb.AppendLine("<script>");
+            sb.AppendFormat("var {0} = [];", _dataLayerName);
+            sb.AppendLine();
+            RenderMessages(sb);
+            sb.AppendLine("</script>");
+        }
+
+        private void RenderMessages(StringBuilder sb)
+        {
+            foreach (var message in _messages)
+            {
+                sb.AppendLine(message.RenderMessage(_dataLayerName));
+            }
+        }
+    }
 }
