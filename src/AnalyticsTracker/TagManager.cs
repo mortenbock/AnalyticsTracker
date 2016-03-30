@@ -5,11 +5,13 @@ namespace Vertica.AnalyticsTracker
 	public class TagManager
 	{
 
-		public static IHtmlString Render(string account = "GTM-XXXX", string dataLayerName = "dataLayer")
+		public static IHtmlString Render(string account = "GTM-XXXX", string dataLayerName = "dataLayer", string environmentAuth = null, string environmentPreview = null)
 		{
 			var current = Current;
 			current.SetAccount(account);
 			current.SetDataLayerName(dataLayerName);
+			current.SetEnvironmentAuth(environmentAuth);
+			current.SetEnvironmentPreview(environmentPreview);
 
 			return new HtmlString(current.Render());
 		}
