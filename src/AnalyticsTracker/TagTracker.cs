@@ -37,18 +37,18 @@ namespace Vertica.AnalyticsTracker
             RenderDataLayer(sb);
 
             var environmentQueryParameter = _environmentAuth != null && _environmentPreview != null
-                ? string.Format("+'&gtm_auth={0}&gtm_preview={1}'", _environmentAuth, _environmentPreview)
-                : "";
+                ? string.Format("&gtm_auth={0}&gtm_preview={1}", _environmentAuth, _environmentPreview)
+                : string.Empty;
 
             sb.AppendFormat(@"<!-- Google Tag Manager -->
-<noscript><iframe src='//www.googletagmanager.com/ns.html?id={0}' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
+<noscript><iframe src='//www.googletagmanager.com/ns.html?id={0}{2}' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
 <script>
 (function(w,d,s,l,i){{
 w[l]=w[l]||[];
 w[l].push({{'gtm.start': new Date().getTime(),event:'gtm.js'}});
 var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
 j.async=true;
-j.src='//www.googletagmanager.com/gtm.js?id='+i+dl{2};
+j.src='//www.googletagmanager.com/gtm.js?id='+i+dl+'{2}';
 f.parentNode.insertBefore(j,f);
 }})(window,document,'script','{1}','{0}');
 </script>
