@@ -35,29 +35,44 @@ namespace Vertica.AnalyticsTracker
         {
             var sb = new StringBuilder();
             RenderDataLayer(sb);
-
-            var environmentQueryParameter = _environmentAuth != null && _environmentPreview != null
-                ? string.Format("&gtm_auth={0}&gtm_preview={1}", _environmentAuth, _environmentPreview)
-                : string.Empty;
-
-            sb.AppendFormat(@"<!-- Google Tag Manager -->
-<noscript><iframe src='//www.googletagmanager.com/ns.html?id={0}{2}' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
-<script>
-(function(w,d,s,l,i){{
-w[l]=w[l]||[];
-w[l].push({{'gtm.start': new Date().getTime(),event:'gtm.js'}});
-var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-j.async=true;
-j.src='//www.googletagmanager.com/gtm.js?id='+i+dl+'{2}';
-f.parentNode.insertBefore(j,f);
-}})(window,document,'script','{1}','{0}');
-</script>
-<!-- End Google Tag Manager -->", _account, _dataLayerName, environmentQueryParameter);
-
+	        RenderNoScript(sb);
+	        RenderScript(sb);
             return sb.ToString();
         }
 
-        public string RenderHeader()
+	    private string EnvironmentQueryParameter
+	    {
+		    get
+		    {
+			    var environmentQueryParameter = _environmentAuth != null && _environmentPreview != null
+				    ? string.Format("&gtm_auth={0}&gtm_preview={1}", _environmentAuth, _environmentPreview)
+				    : string.Empty;
+			    return string.Format("{0}&gtm_cookies_win=x", environmentQueryParameter);
+		    }
+	    }
+
+	    public string RenderScript()
+	    {
+			var sb = new StringBuilder();
+			RenderScript(sb);
+			return sb.ToString();
+		}
+
+	    public string RenderNoScript()
+		{
+			var sb = new StringBuilder();
+			RenderNoScript(sb);
+			return sb.ToString();
+		}
+
+	    public string RenderDataLayer()
+		{
+			var sb = new StringBuilder();
+			RenderDataLayer(sb);
+			return sb.ToString();
+		}
+
+	    public string RenderHeader()
         {
             var sb = new StringBuilder();
             RenderMessages(sb);
@@ -65,7 +80,27 @@ f.parentNode.insertBefore(j,f);
             return sb.ToString();
         }
 
-        private void RenderDataLayer(StringBuilder sb)
+	    private void RenderScript(StringBuilder sb)
+	    {
+		    sb.AppendFormat(@"<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
+new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl+'{2}';f.parentNode.insertBefore(j,f);
+}})(window,document,'script','{1}','{0}');</script>
+<!-- End Google Tag Manager -->", _account, _dataLayerName, EnvironmentQueryParameter);
+	    }
+
+	    private void RenderNoScript(StringBuilder sb)
+	    {
+		    sb.AppendFormat(@"
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src='https://www.googletagmanager.com/ns.html?id={0}{1}'
+height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->", _account, EnvironmentQueryParameter);
+	    }
+
+	    private void RenderDataLayer(StringBuilder sb)
         {
             sb.AppendLine("<script>");
             sb.AppendFormat("var {0} = [];", _dataLayerName);
