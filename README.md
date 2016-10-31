@@ -187,6 +187,13 @@ In your template, add the following after the `<body>` to render the tracking sc
 		...
 	</body>
 
+### Rendering individual parts
+If need be you can render the individual parts of Google Tag Manager (script, noscript and datalayer) with:
+
+- `TagManager.RenderScript()`
+- `TagManager.RenderNoScript()`
+- `TagManager.RenderDataLayer()`
+
 ### Advanced tracker settings
 
 You can tweak the settings of the tag by using the overloads of the Render() method.
