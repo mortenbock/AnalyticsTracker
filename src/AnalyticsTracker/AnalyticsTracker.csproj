@@ -70,6 +70,14 @@
     <Compile Include="Extensions\ExtensionsToHttpRequest.cs" />
     <Compile Include="Extensions\ExtenstionsToString.cs" />
     <Compile Include="MessageBase.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\CheckoutStepMeasurement.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\AddToCartEvent.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\EnhancedEcommerceMeasurementBase.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\ProductClickEvent.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\ProductDetailMeasurement.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\ProductImpressionsMeasurement.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\PurchaseMeasurement.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\RemoveFromCartEvent.cs" />
     <Compile Include="Messages\Event.cs" />
     <Compile Include="Messages\Ecommerce\TransactionMessage.cs" />
     <Compile Include="Messages\Ecommerce\TransactionItemInfo.cs" />
