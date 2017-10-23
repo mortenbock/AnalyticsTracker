@@ -10,7 +10,7 @@ namespace Vertica.AnalyticsTracker.Messages.EnhancedEcommerce
         {
             _eventName = eventName;
         }
-        public sealed override string RenderMessage(string dataLayerName)
+        public sealed override string RenderMessage()
         {
             var baseDictionary = new Dictionary<string, object>();
             if (!string.IsNullOrWhiteSpace(_eventName))
@@ -18,7 +18,7 @@ namespace Vertica.AnalyticsTracker.Messages.EnhancedEcommerce
                 baseDictionary.Add("event", _eventName);
             }
             baseDictionary.Add("ecommerce", CreateMeasurement());
-            return Push(dataLayerName, new ConfigurationObject(baseDictionary));
+            return Push(new ConfigurationObject(baseDictionary));
         }
 
         public abstract Dictionary<string, object> CreateMeasurement();

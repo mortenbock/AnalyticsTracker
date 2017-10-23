@@ -11,11 +11,11 @@ namespace Vertica.AnalyticsTracker.Messages
 			_eventName = eventName;
 		}
 
-		public override string RenderMessage(string dataLayerName)
+		public override string RenderMessage()
 		{
 			var vals = new Dictionary<string, object> {{"event", _eventName}};
 			var obj = new ConfigurationObject(vals);
-			return Push(dataLayerName, obj);
+			return Push(obj);
 		}
 	}
 }

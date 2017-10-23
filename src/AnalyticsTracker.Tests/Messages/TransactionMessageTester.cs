@@ -15,7 +15,7 @@ namespace AnalyticsTracker.Tests.Messages
 				new TransactionItemInfo("White shirt", "S1235","Shirts", 50.50M,1)
 			});
 
-			var renderedMessage = subj.RenderMessage("dataLayer");
+			var renderedMessage = subj.RenderMessage();
 			Assert.That(renderedMessage, Is.StringContaining("'transactionId': 't12345'"));
 			Assert.That(renderedMessage, Is.StringContaining("'transactionAffiliation': 'Acme'"));
 			Assert.That(renderedMessage, Is.StringContaining("'transactionTotal': 100.5"));

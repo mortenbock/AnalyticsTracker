@@ -24,11 +24,11 @@ namespace Vertica.AnalyticsTracker.Messages
 		public Variable(string name, Dictionary<string, object> value) : this(name, (object)value) { }
 		public Variable(string name, Dictionary<string, object>[] values) : this(name, (object)values) { }
 
-		public override string RenderMessage(string dataLayerName)
+		public override string RenderMessage()
 		{
 			var vals = new Dictionary<string, object> { { _name, _value } };
 			var obj = new ConfigurationObject(vals);
-			return Push(dataLayerName, obj);
+			return Push(obj);
 		}
 	}
 }

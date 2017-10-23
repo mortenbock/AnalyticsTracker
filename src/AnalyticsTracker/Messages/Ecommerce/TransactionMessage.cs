@@ -17,9 +17,9 @@ namespace Vertica.AnalyticsTracker.Messages.Ecommerce
 			_info["transactionProducts"] = items.Select(i => i.Info).ToArray();
 		}
 
-		public override string RenderMessage(string dataLayerName)
+		public override string RenderMessage()
 		{
-			return Push(dataLayerName, new ConfigurationObject(_info));
+			return Push(new ConfigurationObject(_info));
 		}
 	}
 }

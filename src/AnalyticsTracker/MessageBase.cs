@@ -2,11 +2,11 @@
 {
 	public abstract class MessageBase
 	{
-		public abstract string RenderMessage(string dataLayerName);
+		public abstract string RenderMessage();
 
-		protected string Push(string dataLayerName, ConfigurationObject obj)
+		protected string Push(ConfigurationObject obj)
 		{
-			return string.Format("{0}.push({1});",dataLayerName, obj.Render());
+			return $"window.tagManagerPush({obj.Render()});";
 		}
 	}
 }
