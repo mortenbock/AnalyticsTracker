@@ -25,8 +25,8 @@ namespace AnalyticsTracker.Tests
 			subj.SetDataLayerName("myDataLayer");
 			subj.AddMessage(new Variable("myVariable", "myValue"));
 			var rendered = subj.Render();
-			Assert.That(rendered, Is.StringContaining("var myDataLayer = [];"));
-			Assert.That(rendered, Is.StringContaining("myDataLayer.push({'myVariable': 'myValue'});"));
+		    Assert.That(rendered, Is.StringContaining("var myDataLayer = []; function tagManagerPush(obj){myDataLayer.push(obj);}"));
+		    Assert.That(rendered, Is.StringContaining("window.tagManagerPush({'myVariable': 'myValue'});"));
 		}
 
 		[Test]
@@ -63,8 +63,8 @@ namespace AnalyticsTracker.Tests
 			subj.SetDataLayerName("myDataLayer");
 			subj.AddMessage(new Variable("myVariable", "myValue"));
 			var rendered = subj.RenderDataLayer();
-			Assert.That(rendered, Is.StringContaining("var myDataLayer = [];"));
-			Assert.That(rendered, Is.StringContaining("myDataLayer.push({'myVariable': 'myValue'});"));
+			Assert.That(rendered, Is.StringContaining("var myDataLayer = []; function tagManagerPush(obj){myDataLayer.push(obj);}"));
+			Assert.That(rendered, Is.StringContaining("window.tagManagerPush({'myVariable': 'myValue'});"));
 		}
 	}
 }

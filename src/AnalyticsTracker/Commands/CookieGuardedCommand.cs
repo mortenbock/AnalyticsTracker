@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Text;
 
 namespace Vertica.AnalyticsTracker.Commands
 {
-	public class CookieGuardedCommand : CommandBase
+    public class CookieGuardedCommand : CommandBase
 	{
 		private readonly CommandBase _guardedCommand;
 		private readonly string _commandId;
@@ -43,22 +42,8 @@ namespace Vertica.AnalyticsTracker.Commands
 
 		public override string RenderCommand()
 		{
-			var cookiePrefix = "AnalyticsTrackerGuard";
-
-			var sb = new StringBuilder();
-
-			string encodedId = Uri.EscapeDataString(_commandId);
-			var clause = string.Format("if (document.cookie.search(/{0}{1}=true/) === -1) {{", cookiePrefix, encodedId);
-			sb.AppendLine(clause);
-
-			sb.Append(_guardedCommand.RenderCommand());
-
-			DateTime currentTime = _now ?? DateTime.Now;
-			var inOneYear = currentTime.AddDays(_cookieExpirationDays);
-			var cookieSetter = string.Format("document.cookie = '{0}{1}=true; Expires=' + new Date({2}, {3:00}, {4:00}).toUTCString();", cookiePrefix, encodedId, inOneYear.Year, inOneYear.Month - 1, inOneYear.Day);
-			sb.AppendLine(cookieSetter);
-			sb.AppendLine("}");
-			return sb.ToString();
+		    var guardedScript = _guardedCommand.RenderCommand();
+		    return CookieGuardedScript.GuardScript(guardedScript, _commandId, _now, _cookieExpirationDays);
 		}
 	}
 }

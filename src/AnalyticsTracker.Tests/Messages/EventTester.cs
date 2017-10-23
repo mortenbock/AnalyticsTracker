@@ -10,7 +10,7 @@ namespace AnalyticsTracker.Tests.Messages
 		public void RenderMessage_ValueIsString_QuotedValueRendered()
 		{
 			var subj = new Event("myEventName");
-			var renderedMessage = subj.RenderMessage("dataLayer");
+			var renderedMessage = subj.RenderMessage();
 			Assert.That(renderedMessage, Is.StringContaining("{'event': 'myEventName'}"));
 		}
 	}

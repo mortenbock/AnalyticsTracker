@@ -16,7 +16,7 @@ namespace Vertica.AnalyticsTracker.Modules
 		{
 			if (HttpContext.Current.Request.IsAnalyticsTrackingEnabled())
 			{
-				var renderBody = AnalyticsTracker.Current.RenderForHeader();
+				var renderBody = AnalyticsTracker.Current.RenderForHeader() + TagManager.Current.RenderHeader();
 
 				if(string.IsNullOrWhiteSpace(renderBody))
 					return;
@@ -32,7 +32,7 @@ namespace Vertica.AnalyticsTracker.Modules
 				const int bytePerHeader = 5000;
 				while (encodedString.Length > i * bytePerHeader)
 				{
-					response.AddHeader(string.Format("AnalyticsTracker-{0}", i), encodedString.SafeSubstring(bytePerHeader * i, bytePerHeader));
+					response.AddHeader($"AnalyticsTracker-{i}", encodedString.SafeSubstring(bytePerHeader * i, bytePerHeader));
 					i++;
 				}
 			}
