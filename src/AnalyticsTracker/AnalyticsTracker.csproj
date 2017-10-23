@@ -45,6 +45,7 @@
     <Compile Include="CommandOrder.cs" />
     <Compile Include="AnalyticsCurrency.cs" />
     <Compile Include="Commands\CookieGuardedCommand.cs" />
+    <Compile Include="Commands\CookieGuardedScript.cs" />
     <Compile Include="Commands\Ecommerce\TransactionCommand.cs" />
     <Compile Include="Commands\EnhancedEcommerce\CheckoutCommand.cs" />
     <Compile Include="Commands\EnhancedEcommerce\CheckoutOptionCommand.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Extensions\ExtensionsToHttpRequest.cs" />
     <Compile Include="Extensions\ExtenstionsToString.cs" />
     <Compile Include="MessageBase.cs" />
+    <Compile Include="Messages\CookieGuardedMessage.cs" />
     <Compile Include="Messages\EnhancedEcommerce\CheckoutStepMeasurement.cs" />
     <Compile Include="Messages\EnhancedEcommerce\AddToCartEvent.cs" />
     <Compile Include="Messages\EnhancedEcommerce\EnhancedEcommerceMeasurementBase.cs" />
