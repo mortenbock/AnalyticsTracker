@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/vertica-as/AnalyticsTracker</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>AnalyticsTracker is a utility for generating tracking scripts for Google Analytics in ASP.NET sites </description>
-    <releaseNotes>Added enhanced ecommerce tracking for TagManager. Added tag manager to ajax tracking.</releaseNotes>
-    <copyright>Copyright © 2016</copyright>
+    <releaseNotes>Add currency code to GTM ecommerce tracking.</releaseNotes>
+    <copyright>Copyright © 2017</copyright>
     <tags>google analytics google tag manager</tags>
   </metadata>
 </package>
