@@ -8,25 +8,29 @@ namespace Vertica.AnalyticsTracker.Messages.EnhancedEcommerce
     {
         private readonly ProductFieldObject[] _productFields;
         private readonly CheckoutActionFieldObject _checkoutActionField;
+        private readonly string _currencyCode;
 
-        public CheckoutStepMeasurement(CheckoutActionFieldObject checkoutActionField, ProductFieldObject[] products) : base("checkout")
+        public CheckoutStepMeasurement(string currencyCode, CheckoutActionFieldObject checkoutActionField, ProductFieldObject[] products) : base("checkout")
         {
             _productFields = products;
+            _currencyCode = currencyCode;
             _checkoutActionField = checkoutActionField;
         }
 
         public override Dictionary<string, object> CreateMeasurement()
         {
-            return new Dictionary<string, object>
+            var objects = new Dictionary<string, object>();
+            if (!string.IsNullOrWhiteSpace(_currencyCode))
             {
-                {
-                    "checkout", new Dictionary<string, object>
-                    {
-                        {"actionField",  _checkoutActionField.Info },
-                        {"products",  _productFields.Select(p=>p.Info).ToArray() }
-                    }
-                }
-            };
+                objects.Add("currencyCode", _currencyCode);
+            }
+
+            objects.Add("checkout", new Dictionary<string, object>
+            {
+                {"actionField",  _checkoutActionField.Info },
+                {"products",  _productFields.Select(p=>p.Info).ToArray() }
+            });
+            return objects;
         }
     }
 }

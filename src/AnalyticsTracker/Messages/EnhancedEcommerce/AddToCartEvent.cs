@@ -17,16 +17,16 @@ namespace Vertica.AnalyticsTracker.Messages.EnhancedEcommerce
 
         public override Dictionary<string, object> CreateMeasurement()
         {
-            return new Dictionary<string, object>
+            var objects = new Dictionary<string, object>();
+            if (!string.IsNullOrWhiteSpace(_currencyCode))
             {
-                { "currencyCode",_currencyCode},
-                {
-                    "add", new Dictionary<string, object>
-                    {
-                        {"products",  _productFields.Select(p=>p.Info).ToArray() }
-                    }
-                }
-            };
+                objects.Add("currencyCode", _currencyCode);
+            }
+            objects.Add("add", new Dictionary<string, object>
+            {
+                {"products",  _productFields.Select(p=>p.Info).ToArray() }
+            });
+            return objects;
         }
     }
 }
