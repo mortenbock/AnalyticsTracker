@@ -7,25 +7,29 @@ namespace Vertica.AnalyticsTracker.Messages.EnhancedEcommerce
     {
         private readonly ProductFieldObject _productField;
         private readonly string _list;
+        private readonly string _currencyCode;
 
-        public ProductClickEvent(string list, ProductFieldObject product) : base("productClick")
+        public ProductClickEvent(string currencyCode, string list, ProductFieldObject product) : base("productClick")
         {
             _productField = product;
+            _currencyCode = currencyCode;
             _list = list;
         }
 
         public override Dictionary<string, object> CreateMeasurement()
         {
-            return new Dictionary<string, object>
+            var objects = new Dictionary<string, object>();
+            if (!string.IsNullOrWhiteSpace(_currencyCode))
             {
-                {
-                    "click", new Dictionary<string, object>
-                    {
-                        {"actionField", new ProductClickActionFieldObject(_list) },
-                        {"products", new []{ _productField.Info} }
-                    }
-                }
-            };
+                objects.Add("currencyCode", _currencyCode);
+            }
+
+            objects.Add("click", new Dictionary<string, object>
+            {
+                {"actionField", new ProductClickActionFieldObject(_list) },
+                {"products", new []{ _productField.Info} }
+            });
+            return objects;
         }
     }
 }

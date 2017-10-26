@@ -6,25 +6,29 @@ namespace Vertica.AnalyticsTracker.Messages.EnhancedEcommerce
     public class ProductDetailMeasurement : EnhancedEcommerceMeasurementBase
     {
         private readonly ProductFieldObject _productField;
+        private readonly string _currencyCode;
 
-        public ProductDetailMeasurement(ProductFieldObject productField)
+        public ProductDetailMeasurement(string currencyCode, ProductFieldObject productField)
         {
             _productField = productField;
+            _currencyCode = currencyCode;
         }
 
         public override Dictionary<string, object> CreateMeasurement()
         {
-            return new Dictionary<string, object>
+            var objects = new Dictionary<string, object>();
+            if (!string.IsNullOrWhiteSpace(_currencyCode))
+            {
+                objects.Add("currencyCode", _currencyCode);
+            }
+
+            objects.Add("detail", new Dictionary<string, object>
             {
                 {
-                    "detail", new Dictionary<string, object>
-                    {
-                        {
-                            "products", new []{ _productField.Info}
-                        }
-                    }
+                    "products", new []{ _productField.Info}
                 }
-            };
+            });
+            return objects;
         }
     }
 }
