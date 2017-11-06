@@ -26,7 +26,7 @@ namespace Vertica.AnalyticsTracker.Messages.EnhancedEcommerce
 
             objects.Add("click", new Dictionary<string, object>
             {
-                {"actionField", new ProductClickActionFieldObject(_list) },
+                {"actionField", new ProductClickActionFieldObject(_list).Info },
                 {"products", new []{ _productField.Info} }
             });
             return objects;

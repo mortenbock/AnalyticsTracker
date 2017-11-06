@@ -23,7 +23,7 @@ namespace Vertica.AnalyticsTracker.Messages.EnhancedEcommerce
             var addToBasketMessage = new Dictionary<string, object>();
             if (!string.IsNullOrWhiteSpace(_list))
             {
-                addToBasketMessage.Add("actionField", new AddToBasketActionFieldObject(_list));
+                addToBasketMessage.Add("actionField", new AddToBasketActionFieldObject(_list).Info);
             }
             addToBasketMessage.Add("products", _productFields.Select(p => p.Info).ToArray());
 
