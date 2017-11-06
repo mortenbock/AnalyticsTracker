@@ -51,6 +51,7 @@
     <Compile Include="Commands\EnhancedEcommerce\CheckoutOptionCommand.cs" />
     <Compile Include="Commands\EnhancedEcommerce\FieldObjects\ActionFieldObject.cs" />
     <Compile Include="Commands\EnhancedEcommerce\AddToBasketCommand.cs" />
+    <Compile Include="Commands\EnhancedEcommerce\FieldObjects\AddToBasketActionFieldObject.cs" />
     <Compile Include="Commands\EnhancedEcommerce\FieldObjects\CheckoutActionFieldObject.cs" />
     <Compile Include="Commands\EnhancedEcommerce\EnhancedEcommerceCommandBase.cs" />
     <Compile Include="Commands\EnhancedEcommerce\FieldObjects\ImpressionFieldObject.cs" />
