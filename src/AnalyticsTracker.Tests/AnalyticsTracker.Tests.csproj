@@ -63,6 +63,8 @@
     <Compile Include="CommandTrackerTester.cs" />
     <Compile Include="ConfigurationObjectTester.cs" />
     <Compile Include="Messages\EnhancedEcommerce\AddToCartEventTester.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\PromoClickMeasurementTester.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\PromoViewMeasurementTester.cs" />
     <Compile Include="Messages\EventTester.cs" />
     <Compile Include="Messages\EnhancedEcommerce\ProductClickEventTester.cs" />
     <Compile Include="Messages\TransactionMessageTester.cs" />

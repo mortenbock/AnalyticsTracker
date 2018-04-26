@@ -56,6 +56,7 @@
     <Compile Include="Commands\EnhancedEcommerce\EnhancedEcommerceCommandBase.cs" />
     <Compile Include="Commands\EnhancedEcommerce\FieldObjects\ImpressionFieldObject.cs" />
     <Compile Include="Commands\EnhancedEcommerce\FieldObjects\ProductClickActionFieldObject.cs" />
+    <Compile Include="Commands\EnhancedEcommerce\FieldObjects\PromoFieldObject.cs" />
     <Compile Include="Commands\EnhancedEcommerce\ProductClickCommand.cs" />
     <Compile Include="Commands\EnhancedEcommerce\ProductDetailCommand.cs" />
     <Compile Include="Commands\EnhancedEcommerce\FieldObjects\ProductFieldObject.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="Messages\EnhancedEcommerce\ProductClickEvent.cs" />
     <Compile Include="Messages\EnhancedEcommerce\ProductDetailMeasurement.cs" />
     <Compile Include="Messages\EnhancedEcommerce\ProductImpressionsMeasurement.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\PromoClickMeasurement.cs" />
+    <Compile Include="Messages\EnhancedEcommerce\PromoViewMeasurement.cs" />
     <Compile Include="Messages\EnhancedEcommerce\PurchaseMeasurement.cs" />
     <Compile Include="Messages\EnhancedEcommerce\RemoveFromCartEvent.cs" />
     <Compile Include="Messages\Event.cs" />
