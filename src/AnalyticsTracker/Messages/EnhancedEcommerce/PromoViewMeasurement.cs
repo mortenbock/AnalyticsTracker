@@ -8,7 +8,7 @@ namespace Vertica.AnalyticsTracker.Messages.EnhancedEcommerce
     {
         private readonly PromoFieldObject[] _promoFieldObjects;
 
-        public PromoViewMeasurement(PromoFieldObject[] promoFieldObjects)
+        public PromoViewMeasurement(PromoFieldObject[] promoFieldObjects) : base("promoView")
         {
             _promoFieldObjects = promoFieldObjects;
         }
