@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/vertica-as/AnalyticsTracker</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>AnalyticsTracker is a utility for generating tracking scripts for Google Analytics in ASP.NET sites </description>
-    <releaseNotes>Added promo measurements.</releaseNotes>
+    <releaseNotes>Added promo measurements event name.</releaseNotes>
     <copyright>Copyright © 2018</copyright>
     <tags>google analytics google tag manager</tags>
   </metadata>
