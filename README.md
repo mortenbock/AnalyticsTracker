@@ -213,7 +213,7 @@ Using the TagManager lets you easily information to the `dataLayer` variable.
 This will generate the following dataLayer
 
 	<script>
-	var dataLayer = [];
+	var dataLayer = dataLayer || [];
 	dataLayer.push({'myVariable': 'myValue'});
 	</script>
 
@@ -231,7 +231,7 @@ Sometimes you might want to add more complex objects to the dataLayer, and this 
 The dictionary will then be rendered as a deep object
 
 	<script>
-	var dataLayer = [];
+	var dataLayer = dataLayer || [];
 	dataLayer.push({'myVariable': {'myProp': 'myValue','yourProp': 12345}});
 	</script>
 
@@ -262,7 +262,7 @@ Using the TransactionMessage, order information can be sent through the dataLaye
 The order will be rendered according to the GTM specifications:
 
 	<script>
-	var dataLayer = [];
+	var dataLayer = dataLayer || [];
 	dataLayer.push(
 		{
 			'transactionId': 'order1001',
